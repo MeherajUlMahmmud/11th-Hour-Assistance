@@ -18,6 +18,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'user_control.apps.UserControlConfig',
+    'request_control.apps.RequestControlConfig',
 
     'rest_framework',
     'corsheaders',
