@@ -1,6 +1,6 @@
 from django.db import models
 
-from user_control.models import User
+from user_control.models import *
 
 
 class RequestModel(models.Model):
@@ -22,8 +22,8 @@ class RequestModel(models.Model):
 
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     patient_name = models.CharField(max_length=100)
-    gender = models.CharField(max_length=255, choices=GENDER_CHOICES)
-    blood_group = models.CharField(max_length=255, choices=BLOOD_GROUP_CHOICES)
+    gender = models.CharField(max_length=255, null=True, blank=True, choices=GENDER_CHOICES)
+    blood_group = models.CharField(max_length=255, null=True, blank=True, choices=BLOOD_GROUP_CHOICES)
     location = models.TextField(max_length=255)
     is_emergency = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
