@@ -30,7 +30,22 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 @api_view(['POST'])
 def registerUser(request):
-    pass
+    data = request.data
+
+    try:
+        user = User.objects.create(
+            name=data['name'],
+            email=data['email'],
+            passwo=make_password(data['password'])
+        )
+        profile = UserProfileModel.objects.create(
+            user=user
+        )
+        serializer = UserSerializerWithToken(user, many=False)
+        return Response(serializer.data)
+    except:
+        message = {'detail': "Email already exists"}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['PUT'])
