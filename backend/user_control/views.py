@@ -16,12 +16,17 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
 
-        serializer = UserSerializerWithToken(self.user).data
+        user_serializer = UserSerializerWithToken(self.user).data
 
-        for k, v in serializer.items():
+        for k, v in user_serializer.items():
             data[k] = v
 
         return data
+        # profile = UserProfileModel.objects.get(user=self.user)
+        # profile_serializer = UserProfileSerializer(profile, many=False)
+        #
+        # return data, profile_serializer.data
+        # return Response({'userInfo': data, 'profileInfo': profile_serializer.data})
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -42,8 +47,9 @@ def registerUser(request):
         profile = UserProfileModel.objects.create(
             user=user
         )
-        serializer = UserSerializerWithToken(user, many=False)
-        return Response(serializer.data)
+        user_serializer = UserSerializerWithToken(user, many=False)
+        profile_serializer = UserProfileSerializer(profile, many=False)
+        return Response(user_serializer.data)
     except:
         message = {'detail': "Email already exists"}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
