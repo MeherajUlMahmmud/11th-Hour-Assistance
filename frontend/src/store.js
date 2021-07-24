@@ -1,12 +1,22 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { requestListReducer } from "./reducers/requestReducers";
+import {
+  requestCreateReducer,
+  requestDetailsReducer,
+  requestDeleteReducer,
+  requestUpdateReducer,
+  requestListReducer,
+} from "./reducers/requestReducers";
 
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
 
 const reducer = combineReducers({
+  requestCreate: requestCreateReducer,
   requestList: requestListReducer,
+  requestDetails: requestDetailsReducer,
+  requestUpdate: requestUpdateReducer,
+  requestDelete: requestDeleteReducer,
 
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
