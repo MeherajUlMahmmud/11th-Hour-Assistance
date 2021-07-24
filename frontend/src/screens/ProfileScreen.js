@@ -1,6 +1,6 @@
 import React from 'react'
 
-function BloodRequestScreen() {
+function ProfileScreen() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function BloodRequestScreen() {
     )
 }
 
-export default BloodRequestScreen
+export default ProfileScreen
