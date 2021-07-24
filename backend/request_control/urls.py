@@ -6,6 +6,6 @@ urlpatterns = [
     path('create-new-request/', createRequest),
     path('all-requests/', getAllRequests),
     path('request/<str:pk>/', getSingleRequest),
-    path('edit-request/<str:pk>/', editRequest),
+    path('update-request/<str:pk>/', updateRequest),
     path('delete-request/<str:pk>/', deleteRequest),
 ]

@@ -18,6 +18,8 @@ def createRequest(request):
         gender=data['gender'],
         blood_group=data['blood_group'],
         location=data['location'],
+        is_emergency=data['is_emergency'],
+        is_active=True,
         needed_within=data['needed_within'],
         phone=data['phone'],
         note=data['note']
@@ -28,7 +30,7 @@ def createRequest(request):
 
 @api_view(['GET'])
 def getAllRequests(request):
-    requests = RequestModel.objects.all()
+    requests = RequestModel.objects.filter(is_active=True)
     serializer = RequestModelSerializer(requests, many=True)
     return Response(serializer.data)
 
@@ -42,7 +44,7 @@ def getSingleRequest(request, pk):
 
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
-def editRequest(request, pk):
+def updateRequest(request, pk):
     data = request.data
     req = RequestModel.objects.get(id=pk)
 
@@ -50,6 +52,8 @@ def editRequest(request, pk):
     req.gender = data['gender']
     req.blood_group = data['blood_group']
     req.location = data['location']
+    req.is_emergency = data['is_emergency']
+    req.is_active = data['is_active']
     req.needed_within = data['needed_within']
     req.phone = data['phone']
     req.note = data['note']
