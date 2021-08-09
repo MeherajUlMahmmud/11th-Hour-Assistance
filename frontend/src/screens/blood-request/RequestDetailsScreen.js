@@ -57,20 +57,25 @@ function RequestDetailsScreen({ match, history }) {
         <div>
           <section className="inner-page ">
             <div className="container">
-              <div className="row">
-                <div className="col-md-6"></div>
-                <div className="col-md-6">
-                  <Link
-                    className="btn btn-primary m-2"
-                    to={`/update-request/${request.id}`}
-                  >
-                    Update Request
-                  </Link>
-                  <Link className="btn btn-danger m-2" to={`/update-request/${request.id}`}>
-                    Delete Request
-                  </Link>
+              {isSelf ? (
+                <div className="row">
+                  <div className="col-md-6"></div>
+                  <div className="col-md-6">
+                    <Link
+                      className="btn btn-primary m-2"
+                      to={`/update-request/${request.id}`}
+                    >
+                      Update Request
+                    </Link>
+                    <button
+                      onClick={() => deleteHandler(request.id)}
+                      className="btn btn-danger m-2"
+                    >
+                      Delete Request
+                    </button>
+                  </div>
                 </div>
-              </div>
+              ) : null}
               <div className="row">
                 <div className="col-md-6">
                   <h2 className="m-3">
