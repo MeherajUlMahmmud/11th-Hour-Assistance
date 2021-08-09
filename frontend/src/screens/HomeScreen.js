@@ -1,8 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
 
 function HomeScreen() {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   return (
     <div>
       <section id="hero" className="wow fadeIn">
@@ -13,9 +16,11 @@ function HomeScreen() {
             src={process.env.PUBLIC_URL + "assets/img/hero-img.png"}
             alt="Hero Imgs"
           />
-          <Link className="btn-get-started scrollto" to={"/register"}>
-            Get Started
-          </Link>
+          {userInfo ? null : (
+            <Link className="btn-get-started" to={"/register"}>
+              Get Started
+            </Link>
+          )}
         </div>
       </section>
     </div>

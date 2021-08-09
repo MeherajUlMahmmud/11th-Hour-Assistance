@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../components/Header";
-import { register } from "../actions/userActions";
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
+import { login } from "../../actions/userActions";
 
-function RegisterScreen({ location, history }) {
-  const [name, setName] = useState("");
+function LoginScreen({ location, history }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
-  const userRegister = useSelector((state) => state.userRegister);
-  const { error, loading, userInfo } = userRegister;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { error, loading, userInfo } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
@@ -26,35 +24,19 @@ function RegisterScreen({ location, history }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setMessage("Passwords do not match");
-    } else {
-      dispatch(register(name, email, password));
-    }
+    dispatch(login(email, password));
   };
-
   return (
     <div>
-      <Header />
-      <div className="container col-md-8">
+      <div className="container col-md-8 mt-5">
         <div className="content-section">
           <div className="form">
             <div className="my-5"></div>
             <form onSubmit={submitHandler}>
-              <h2 className="m-5 text-center">Sign Up </h2>
-              <h3 className="m-3 text-center">Sign Up here</h3>
-              <div className="form-group m-3">
-                <input
-                  type="text"
-                  name="name"
-                  className="form-control"
-                  id="name"
-                  placeholder="Your Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                ></input>
-              </div>
+              <h2 className="text-center">Welcome back</h2>
+              <h3 className="m-3 text-center">Login here</h3>
+              {error && <Message variant="danger">{error}</Message>}
+              {loading && <Loader />}
               <div className="form-group m-3">
                 <input
                   type="email"
@@ -79,28 +61,17 @@ function RegisterScreen({ location, history }) {
                   required
                 ></input>
               </div>
-              <div className="form-group m-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  name="confirm-password"
-                  id="confirm-password"
-                  placeholder="Confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                ></input>
-              </div>
+
               <div className="text-center">
                 <button className="btn btn-primary m-5" type="submit">
-                  Sign Up
+                  Login
                 </button>
               </div>
             </form>
           </div>
-          <div className="border-top pt-3">
+          <div className="border-top p-3">
             <small className="text-muted">
-              Already Have An Account? <Link to={"/login"}>Log In</Link>
+              Not a member yet? <Link to={"/register"}>Sign Up</Link>
             </small>
           </div>
         </div>
@@ -109,4 +80,4 @@ function RegisterScreen({ location, history }) {
   );
 }
 
-export default RegisterScreen;
+export default LoginScreen;

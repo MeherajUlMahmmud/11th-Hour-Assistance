@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
 import { useDispatch, useSelector } from "react-redux";
-import RequestCard from "../components/RequestCard";
-import { listRequests } from "../actions/requestActions";
+import RequestCard from "../../components/RequestCard";
+import { listRequests } from "../../actions/requestActions";
 
 function BloodRequestScreen() {
   const dispatch = useDispatch();
@@ -19,7 +20,6 @@ function BloodRequestScreen() {
 
   return (
     <div>
-      <Header />
       <section id="features" className="padd-section text-center mt-4">
         <div className="container" data-aos="fade-up">
           <div className="section-title text-center">
@@ -34,15 +34,21 @@ function BloodRequestScreen() {
               </Link>
             </div>
           </div>
-          <div className="row" data-aos="fade-up" data-aos-delay={100}>
-            {blood_requests.map((req) => (
-              <div className="col-md-6 col-lg-3">
-                <div className="feature-block border">
-                  <RequestCard req={req} />
+          {loading ? (
+            <Loader />
+          ) : error ? (
+            <Message variant="danger">{error}</Message>
+          ) : (
+            <div className="row" data-aos="fade-up" data-aos-delay={100}>
+              {blood_requests.map((req) => (
+                <div className="col-md-6 col-lg-3">
+                  <div className="feature-block border">
+                    <RequestCard req={req} />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>

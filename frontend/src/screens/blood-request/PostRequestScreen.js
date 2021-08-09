@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createRequest } from "../actions/requestActions";
-import Header from "../components/Header";
+import { createRequest } from "../../actions/requestActions";
 
 function PostRequestScreen({ match, history }) {
   const [patientName, setPatientName] = useState("");
@@ -113,7 +112,6 @@ function PostRequestScreen({ match, history }) {
                       value={isEmergency}
                       onChange={(e) => setIsEmergency(e.target.value)}
                       title="Emergency"
-                      required
                     ></input>
                     <label>{" "}Emergency</label>
                   </div>

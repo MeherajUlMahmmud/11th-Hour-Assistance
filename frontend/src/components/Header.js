@@ -31,7 +31,7 @@ function Header() {
               </a>
             </li>
             <li className="dropdown">
-              <a href="#">
+              <a>
                 <span>Emergency Services</span>{" "}
                 <i className="bi bi-chevron-down" />
               </a>
@@ -70,7 +70,7 @@ function Header() {
 
             {userInfo ? (
               <li className="dropdown">
-                <a href="#">
+                <a >
                   <span>{userInfo.name}</span>{" "}
                   <i className="bi bi-chevron-down" />
                 </a>
@@ -92,7 +92,7 @@ function Header() {
               </li>
             ) : (
               <li className="dropdown">
-                <a href="#">
+                <a>
                   <span>Get Started</span> <i className="bi bi-chevron-down" />
                 </a>
                 <ul>
