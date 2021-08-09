@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import FormContainer from "../components/FormContainer";
 import { createRequest } from "../actions/requestActions";
+import Header from "../components/Header";
 
 function PostRequestScreen({ match, history }) {
   const [patientName, setPatientName] = useState("");
@@ -36,109 +35,120 @@ function PostRequestScreen({ match, history }) {
   };
 
   return (
-    <div>
-      <Link to="/blood-requests">Go Back</Link>
-
-      <FormContainer>
-        <h1>Post Blood Request</h1>
-        <Form onSubmit={submitHandler}>
-          <Form.Group controlId="patient_name">
-            <Form.Label>Patient's Name</Form.Label>
-            <Form.Control
-              required
-              type="name"
-              placeholder="Patient's Name"
-              value={patientName}
-              onChange={(e) => setPatientName(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="gender">
-            <Form.Label>Gender</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Gender"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-            ></Form.Control>
-            {/* <Form.Select>
-              <option>Select Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </Form.Select> */}
-          </Form.Group>
-
-          <Form.Group controlId="blood_group">
-            <Form.Label>Blood Group</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Blood Group"
-              value={bloodGroup}
-              onChange={(e) => setBloodGroup(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="location">
-            <Form.Label>Location</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="needed_within">
-            <Form.Label>Needed Within</Form.Label>
-            <Form.Control
-              required
-              type="date"
-              value={neededWithin}
-              onChange={(e) => setNeededWithin(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="phone">
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Phone Number"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="isEmergency">
-            <Form.Check
-              type="checkbox"
-              label="Emergency"
-              value={isEmergency}
-              onChange={(e) => setIsEmergency(e.target.value)}
-            />
-          </Form.Group>
-
-          <Form.Group controlId="note">
-            <Form.Label>Additional Note (Optional)</Form.Label>
-            <Form.Control
-              type="textarea"
-              rows={3}
-              placeholder="Write Note"
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Button className="m-3 text-center" type="submit" variant="success">
-            Post Request
-          </Button>
-        </Form>
-      </FormContainer>
-    </div>
+    <main id="main">
+      <section className="breadcrumbs">
+        <div className="container">
+          <div className="d-flex justify-content-between align-items-center">
+            <h2>Post Blood Request</h2>
+            <ol>
+              <li>
+                <Link to={"/"}>Home</Link>
+              </li>
+              <li>Post Blood Request</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+      <section className="inner-page ">
+        <div className="container">
+          <div className="container col-md-8">
+            <div className="content-section">
+              <div className="form">
+                <div className="my-5"></div>
+                <form onSubmit={submitHandler}>
+                  <h2 className="m-5 text-center">Post Blood request</h2>
+                  <div className="form-group m-3">
+                    <input
+                      name="name"
+                      className="form-control"
+                      type="name"
+                      placeholder="Patient's Name"
+                      value={patientName}
+                      onChange={(e) => setPatientName(e.target.value)}
+                      required
+                    ></input>
+                  </div>
+                  <div className="form-group m-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Gender"
+                      value={gender}
+                      onChange={(e) => setGender(e.target.value)}
+                      required
+                    ></input>
+                  </div>
+                  <div className="form-group m-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Blood Group"
+                      value={bloodGroup}
+                      onChange={(e) => setBloodGroup(e.target.value)}
+                      required
+                    ></input>
+                  </div>
+                  <div className="form-group m-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Location"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      required
+                    ></input>
+                  </div>
+                  <div className="form-group m-3">
+                    <input
+                      className="form-control"
+                      type="date"
+                      value={neededWithin}
+                      onChange={(e) => setNeededWithin(e.target.value)}
+                      required
+                    ></input>
+                  </div>
+                  <div className="form-group m-3">
+                    <input
+                      type="checkbox"
+                      value={isEmergency}
+                      onChange={(e) => setIsEmergency(e.target.value)}
+                      title="Emergency"
+                      required
+                    ></input>
+                    <label>{" "}Emergency</label>
+                  </div>
+                  <div className="form-group m-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Phone Number"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      required
+                    ></input>
+                  </div>
+                  <div className="form-group m-3">
+                    <input
+                      type="textarea"
+                      className="form-control"
+                      placeholder="Write Note"
+                      value={note}
+                      onChange={(e) => setNote(e.target.value)}
+                      required
+                    ></input>
+                  </div>
+                  <div className="text-center">
+                    <button className="btn btn-primary m-5" type="submit">
+                      Create Blood Request
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
 
