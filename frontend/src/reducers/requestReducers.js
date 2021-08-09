@@ -9,6 +9,10 @@ import {
     REQUEST_DETAILS_REQUEST,
     REQUEST_DETAILS_SUCCESS,
     REQUEST_DETAILS_FAIL,
+  REQUEST_UPDATE_REQUEST,
+  REQUEST_UPDATE_SUCCESS,
+  REQUEST_UPDATE_FAIL,
+  REQUEST_UPDATE_RESET,
     REQUEST_DELETE_REQUEST,
     REQUEST_DELETE_SUCCESS,
     REQUEST_DELETE_FAIL,
@@ -66,7 +70,26 @@ import {
         return state;
     }
   };
-  
+
+export const requestUpdateReducer = (state = { request: {} }, action) => {
+  switch (action.type) {
+    case REQUEST_UPDATE_REQUEST:
+      return { loading: true };
+
+    case REQUEST_UPDATE_SUCCESS:
+      return { loading: false, success: true, request: action.payload };
+
+    case REQUEST_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+
+    case REQUEST_UPDATE_RESET:
+      return { request: {} };
+
+    default:
+      return state;
+  }
+};
+
   export const requestDeleteReducer = (state = {}, action) => {
     switch (action.type) {
       case REQUEST_DELETE_REQUEST:
