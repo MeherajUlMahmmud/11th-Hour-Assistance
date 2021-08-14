@@ -19,9 +19,14 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'user_control.apps.UserControlConfig',
     'request_control.apps.RequestControlConfig',
+    'equipment_control.apps.EquipmentControlConfig',
+
+
 
     'rest_framework',
     'corsheaders',
+
+
 
     'django.contrib.admin',
     'django.contrib.auth',
