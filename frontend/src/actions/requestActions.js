@@ -122,7 +122,6 @@ export const requestDetails = (id) => async (dispatch) => {
   }
 };
 
-
 export const updateRequest =
   (
     id,
@@ -187,7 +186,6 @@ export const updateRequest =
       });
     }
   };
-
 
 export const deleteRequest = (id) => async (dispatch, getState) => {
   try {
