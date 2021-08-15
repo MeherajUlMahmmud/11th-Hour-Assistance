@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'user_control.apps.UserControlConfig',
     'request_control.apps.RequestControlConfig',
     'equipment_control.apps.EquipmentControlConfig',
+    'ambulance_service.apps.AmbulanceServiceConfig',
 
 
 
