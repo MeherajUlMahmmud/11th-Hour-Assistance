@@ -52,7 +52,14 @@ def updateRequest(request, pk):
     req.gender = data['gender']
     req.blood_group = data['blood_group']
     req.location = data['location']
-    req.is_emergency = data['is_emergency']
+
+    if data['is_emergency'] == 'off':
+        req.is_emergency = False
+    elif data['is_emergency'] == 'on':
+        req.is_emergency = True
+    else:
+        req.is_emergency = data['is_emergency']
+    
     req.is_active = data['is_active']
     req.needed_within = data['needed_within']
     req.phone = data['phone']
