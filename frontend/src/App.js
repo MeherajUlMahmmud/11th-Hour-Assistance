@@ -8,19 +8,31 @@ import BloodRequestScreen from "./screens/blood-request/BloodRequestScreen";
 import PostRequestScreen from "./screens/blood-request/PostRequestScreen";
 import UpdateRequestScreen from "./screens/blood-request/UpdateRequestScreen";
 import RequestDetailsScreen from "./screens/blood-request/RequestDetailsScreen";
+import EquipmentRequestScreen from "./screens/equipment/EquipmentRequestScreen";
+import PostEquipmentRequestScreen from "./screens/equipment/PostEquipmentRequestScreen";
+import EquipmentRequestDetailsScreen from "./screens/equipment/EquipmentRequestDetailsScreen";
 
 function App() {
   return (
     <Router>
       <Header />
-      <main className="">
-          <Route path="/" component={HomeScreen} exact />
-          <Route path="/blood-requests" component={BloodRequestScreen} />
-          <Route path="/request/:id" component={RequestDetailsScreen} />
-          <Route path="/create-new-request" component={PostRequestScreen} />
-          <Route path="/update-request/:id" component={UpdateRequestScreen} />
-          <Route path="/login" component={LoginScreen} />
-          <Route path="/register" component={RegisterScreen} />
+      <main>
+        <Route path="/" component={HomeScreen} exact />
+        <Route path="/blood-requests" component={BloodRequestScreen} />
+        <Route path="/request/:id" component={RequestDetailsScreen} />
+        <Route path="/create-new-request" component={PostRequestScreen} />
+        <Route path="/update-request/:id" component={UpdateRequestScreen} />
+        <Route path="/equipment-requests" component={EquipmentRequestScreen} />
+        <Route
+          path="/equipment-request/:id"
+          component={EquipmentRequestDetailsScreen}
+        />
+        <Route
+          path="/create-new-equipment-request"
+          component={PostEquipmentRequestScreen}
+        />
+        <Route path="/login" component={LoginScreen} />
+        <Route path="/register" component={RegisterScreen} />
       </main>
       <Footer />
     </Router>

@@ -1,9 +1,8 @@
 import React from "react";
-import { Alert } from "react-bootstrap";
 
 function Message({ variant, children }) {
   return (
-    <div class="alert alert-{variant}" role="alert">
+    <div className="alert alert-{variant}">
       {children}
     </div>
   );

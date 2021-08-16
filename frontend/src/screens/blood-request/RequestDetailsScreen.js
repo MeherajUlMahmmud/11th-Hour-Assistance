@@ -6,6 +6,7 @@ import Message from "../../components/Message";
 import { requestDetails, deleteRequest } from "../../actions/requestActions";
 
 function RequestDetailsScreen({ match, history }) {
+  const API_KEY = "AIzaSyCAsP-FYcpgwIZdcUXQLcZxZ9yd8roXmiE";
   const requestId = match.params.id;
   const [isSelf, setIsSelf] = useState(false);
   const dispatch = useDispatch();
@@ -76,12 +77,24 @@ function RequestDetailsScreen({ match, history }) {
                   </div>
                 </div>
               ) : null}
-              <div className="row">
+              <div className="row mb-5">
                 <div className="col-md-6">
-                  <h2 className="m-3">
-                    Patient: {request.patient_name}{" "}
-                    <small>({request.gender})</small>
-                  </h2>
+                  <div className="row">
+                    <div className="col-lg-8">
+                      <h2 className="m-3">
+                        Patient: {request.patient_name}{" "}
+                        <small>({request.gender})</small>
+                      </h2>
+                    </div>
+                    <div className="col-lg-3 mt-4">
+                      <span
+                        className="mt-3 rounded p-1"
+                        style={{ backgroundColor: "#BB2D3B", color: "white" }}
+                      >
+                        <i class="far fa-check-circle"></i> Emergency
+                      </span>
+                    </div>
+                  </div>
                   <h3 className="m-3">
                     Blood Group: <b>{request.blood_group}</b>
                   </h3>
@@ -89,7 +102,7 @@ function RequestDetailsScreen({ match, history }) {
                     Needed Within: <b>{request.needed_within}</b>
                   </h3>
                   <h3 className="m-3">
-                    Location: <b>{request.locatio}</b>
+                    Location: <b>{request.location}</b>
                   </h3>
                 </div>
 

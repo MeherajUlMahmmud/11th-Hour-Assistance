@@ -8,6 +8,11 @@ import {
   requestUpdateReducer,
   requestListReducer,
 } from "./reducers/requestReducers";
+import {
+  equipmentRequestCreateReducer,
+  equipmentRequestDetailsReducer,
+  equipmentRequestListReducer,
+} from "./reducers/equipmentReducers";
 
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
 
@@ -17,6 +22,10 @@ const reducer = combineReducers({
   requestDetails: requestDetailsReducer,
   requestUpdate: requestUpdateReducer,
   requestDelete: requestDeleteReducer,
+
+  equipmentRequestCreate: equipmentRequestCreateReducer,
+  equipmentRequestList: equipmentRequestListReducer,
+  equipmentRequestDetails: equipmentRequestDetailsReducer,
 
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,

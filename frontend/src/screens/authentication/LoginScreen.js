@@ -35,7 +35,6 @@ function LoginScreen({ location, history }) {
             <form onSubmit={submitHandler}>
               <h2 className="text-center">Welcome back</h2>
               <h3 className="m-3 text-center">Login here</h3>
-              {error && <Message variant="danger">{error}</Message>}
               {loading && <Loader />}
               <div className="form-group m-3">
                 <input
@@ -62,6 +61,8 @@ function LoginScreen({ location, history }) {
                 ></input>
               </div>
 
+              {error && <div className="alert alert-danger">{error}</div>}
+              
               <div className="text-center">
                 <button className="btn btn-primary m-5" type="submit">
                   Login

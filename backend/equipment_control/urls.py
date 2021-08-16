@@ -13,5 +13,4 @@ urlpatterns = [
     path('post/<str:pk>/', get_single_post),
     path('edit-post/<str:pk>/', edit_post),
     path('delete-post/<str:pk>/', delete_post),
-
 ]
