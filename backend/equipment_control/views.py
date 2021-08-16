@@ -13,11 +13,14 @@ def create_equipment_request(request):
 
     req = EquipmentRequestModel.objects.create(
         user=request.user,
-        image=data['image'],
+        title=data['title'],
         description=data['description'],
         is_emergency=data['is_emergency'],
         location=data['location'],
-        posted_on=data['posted_on']
+        needed_within=data['needed_within'],
+        is_active=True,
+        phone=data['phone'],
+        note=data['note']
     )
     serializer = EquipmentRequestModelSerializer(req, many=False)
     return Response(serializer.data)

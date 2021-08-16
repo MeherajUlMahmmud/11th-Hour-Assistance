@@ -47,7 +47,7 @@ function Header() {
                 <li>
                   <Link
                     className="btn-get-started scrollto"
-                    to={"/equipment-service"}
+                    to={"/equipment-requests"}
                   >
                     Equipment Service
                   </Link>

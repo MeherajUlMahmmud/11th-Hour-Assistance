@@ -158,8 +158,8 @@ function UpdateRequestScreen({ match, history }) {
                     <div className="form-group m-3">
                       <input
                         type="checkbox"
-                        value={isEmergency}
-                        onChange={(e) => setIsEmergency(e.target.value)}
+                        checked={isEmergency}
+                        onChange={(e) => setIsEmergency(e.target.checked)}
                         title="Emergency"
                       ></input>
                       <label> Emergency</label>
