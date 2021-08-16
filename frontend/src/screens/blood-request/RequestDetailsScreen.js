@@ -6,7 +6,6 @@ import Message from "../../components/Message";
 import { requestDetails, deleteRequest } from "../../actions/requestActions";
 
 function RequestDetailsScreen({ match, history }) {
-  const API_KEY = "AIzaSyCAsP-FYcpgwIZdcUXQLcZxZ9yd8roXmiE";
   const requestId = match.params.id;
   const [isSelf, setIsSelf] = useState(false);
   const dispatch = useDispatch();
@@ -86,14 +85,16 @@ function RequestDetailsScreen({ match, history }) {
                         <small>({request.gender})</small>
                       </h2>
                     </div>
-                    <div className="col-lg-3 mt-4">
-                      <span
-                        className="mt-3 rounded p-1"
-                        style={{ backgroundColor: "#BB2D3B", color: "white" }}
-                      >
-                        <i class="far fa-check-circle"></i> Emergency
-                      </span>
-                    </div>
+                    {request.is_emergency ? (
+                      <div className="col-lg-3 mt-4">
+                        <span
+                          className="mt-3 rounded p-1"
+                          style={{ backgroundColor: "#BB2D3B", color: "white" }}
+                        >
+                          <i class="far fa-check-circle"></i> Emergency
+                        </span>
+                      </div>
+                    ) : null}
                   </div>
                   <h3 className="m-3">
                     Blood Group: <b>{request.blood_group}</b>
