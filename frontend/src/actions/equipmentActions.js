@@ -9,6 +9,9 @@ import {
   EQUIPMENT_REQUEST_DETAILS_REQUEST,
   EQUIPMENT_REQUEST_DETAILS_SUCCESS,
   EQUIPMENT_REQUEST_DETAILS_FAIL,
+  EQUIPMENT_REQUEST_DELETE_REQUEST,
+  EQUIPMENT_REQUEST_DELETE_SUCCESS,
+  EQUIPMENT_REQUEST_DELETE_FAIL,
 } from "../constants/equipmentConstants";
 
 export const listEquipmentRequests = () => async (dispatch) => {
@@ -106,6 +109,42 @@ export const requestDetails = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: EQUIPMENT_REQUEST_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
+          : error.message,
+    });
+  }
+};
+
+export const deleteRequest = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: EQUIPMENT_REQUEST_DELETE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.delete(
+      `/api/equipment/delete-request/${id}/`,
+      config
+    );
+
+    dispatch({
+      type: EQUIPMENT_REQUEST_DELETE_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: EQUIPMENT_REQUEST_DELETE_FAIL,
       payload:
         error.response && error.response.data.detail
           ? error.response.data.detail
