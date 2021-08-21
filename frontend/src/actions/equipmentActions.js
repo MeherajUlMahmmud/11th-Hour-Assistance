@@ -9,6 +9,9 @@ import {
   EQUIPMENT_REQUEST_DETAILS_REQUEST,
   EQUIPMENT_REQUEST_DETAILS_SUCCESS,
   EQUIPMENT_REQUEST_DETAILS_FAIL,
+  EQUIPMENT_REQUEST_UPDATE_REQUEST,
+  EQUIPMENT_REQUEST_UPDATE_SUCCESS,
+  EQUIPMENT_REQUEST_UPDATE_FAIL,
   EQUIPMENT_REQUEST_DELETE_REQUEST,
   EQUIPMENT_REQUEST_DELETE_SUCCESS,
   EQUIPMENT_REQUEST_DELETE_FAIL,
@@ -116,6 +119,68 @@ export const requestDetails = (id) => async (dispatch) => {
     });
   }
 };
+
+export const updateRequest =
+  (
+    id,
+    title,
+    description,
+    isEmergency,
+    location,
+    neededWithin,
+    phone,
+    note
+  ) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: EQUIPMENT_REQUEST_UPDATE_REQUEST,
+      });
+
+      const {
+        userLogin: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      const { data } = await axios.put(
+        `/api/equipment/edit-request/${id}/`,
+        {
+          title: title,
+          description: description,
+          is_emergency: isEmergency,
+          location: location,
+          needed_within: neededWithin,
+          phone: phone,
+          note: note,
+        },
+        config
+      );
+      dispatch({
+        type: EQUIPMENT_REQUEST_UPDATE_SUCCESS,
+        payload: data,
+      });
+
+      dispatch({
+        type: EQUIPMENT_REQUEST_DETAILS_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: EQUIPMENT_REQUEST_UPDATE_FAIL,
+        payload:
+          error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+      });
+    }
+  };
+
 
 export const deleteRequest = (id) => async (dispatch, getState) => {
   try {

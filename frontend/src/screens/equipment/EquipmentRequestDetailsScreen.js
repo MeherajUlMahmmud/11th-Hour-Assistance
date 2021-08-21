@@ -60,7 +60,7 @@ function EquipmentRequestDetailsScreen({ match, history }) {
                   <div className="col-md-6">
                     <Link
                       className="btn btn-primary m-2"
-                      to={`/update-request/${request.id}`}
+                      to={`/update-equipment-request/${request.id}`}
                     >
                       Update Request
                     </Link>

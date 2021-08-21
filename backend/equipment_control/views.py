@@ -46,12 +46,13 @@ def update_equipment_request(request, pk):
     data = request.data
     req = EquipmentRequestModel.objects.get(id=pk)
 
-    req.user = data['user'],
-    req.image = data['image'],
-    req.description = data['description'],
-    req.is_emergency = data['is_emergency'],
-    req.location = data['location'],
-    req.posted_on = data['posted_on']
+    req.title = data['title']
+    req.description = data['description']
+    req.is_emergency = data['is_emergency']
+    req.location = data['location']
+    req.needed_within = data['needed_within']
+    req.phone = data['phone']
+    req.note = data['note']
 
     req.save()
 

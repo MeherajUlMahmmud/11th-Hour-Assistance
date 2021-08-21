@@ -11,6 +11,7 @@ import RequestDetailsScreen from "./screens/blood-request/RequestDetailsScreen";
 import EquipmentRequestScreen from "./screens/equipment/EquipmentRequestScreen";
 import PostEquipmentRequestScreen from "./screens/equipment/PostEquipmentRequestScreen";
 import EquipmentRequestDetailsScreen from "./screens/equipment/EquipmentRequestDetailsScreen";
+import UpdateEquipmentRequestScreen from "./screens/equipment/UpdateEquipmentRequestScreen";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
         <Route
           path="/create-new-equipment-request"
           component={PostEquipmentRequestScreen}
+        />
+        <Route
+          path="/update-equipment-request/:id"
+          component={UpdateEquipmentRequestScreen}
         />
         <Route path="/login" component={LoginScreen} />
         <Route path="/register" component={RegisterScreen} />
