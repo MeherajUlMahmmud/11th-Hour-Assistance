@@ -12,6 +12,8 @@ import {
   equipmentRequestCreateReducer,
   equipmentRequestDetailsReducer,
   equipmentRequestListReducer,
+  equipmentRequestUpdateReducer,
+  equipmentRequestDeleteReducer,
 } from "./reducers/equipmentReducers";
 
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
@@ -26,6 +28,8 @@ const reducer = combineReducers({
   equipmentRequestCreate: equipmentRequestCreateReducer,
   equipmentRequestList: equipmentRequestListReducer,
   equipmentRequestDetails: equipmentRequestDetailsReducer,
+  equipmentRequestUpdate: equipmentRequestUpdateReducer,
+  equipmentRequestDelete: equipmentRequestDeleteReducer,
 
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,

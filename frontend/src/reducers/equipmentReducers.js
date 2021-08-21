@@ -6,9 +6,16 @@ import {
   EQUIPMENT_REQUEST_LIST_REQUEST,
   EQUIPMENT_REQUEST_LIST_SUCCESS,
   EQUIPMENT_REQUEST_LIST_FAIL,
+  EQUIPMENT_REQUEST_UPDATE_REQUEST,
+  EQUIPMENT_REQUEST_UPDATE_SUCCESS,
+  EQUIPMENT_REQUEST_UPDATE_FAIL,
+  EQUIPMENT_REQUEST_UPDATE_RESET,
   EQUIPMENT_REQUEST_DETAILS_REQUEST,
   EQUIPMENT_REQUEST_DETAILS_SUCCESS,
   EQUIPMENT_REQUEST_DETAILS_FAIL,
+  EQUIPMENT_REQUEST_DELETE_REQUEST,
+  EQUIPMENT_REQUEST_DELETE_SUCCESS,
+  EQUIPMENT_REQUEST_DELETE_FAIL,
 } from "../constants/equipmentConstants";
 
 export const equipmentRequestListReducer = (
@@ -55,6 +62,30 @@ export const equipmentRequestCreateReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const equipmentRequestUpdateReducer = (state = { request: {} }, action) => {
+  switch (action.type) {
+    case EQUIPMENT_REQUEST_UPDATE_REQUEST:
+      return { loading: true };
+
+    case EQUIPMENT_REQUEST_UPDATE_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        request: action.payload,
+      };
+
+    case EQUIPMENT_REQUEST_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+
+    case EQUIPMENT_REQUEST_UPDATE_RESET:
+      return { request: {} };
+
+    default:
+      return state;
+  }
+};
+
 export const equipmentRequestDetailsReducer = (state = { request: {} }, action) => {
   switch (action.type) {
     case EQUIPMENT_REQUEST_DETAILS_REQUEST:
@@ -70,3 +101,20 @@ export const equipmentRequestDetailsReducer = (state = { request: {} }, action) 
       return state;
   }
 };
+
+export const equipmentRequestDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case EQUIPMENT_REQUEST_DELETE_REQUEST:
+      return { loading: true };
+
+    case EQUIPMENT_REQUEST_DELETE_SUCCESS:
+      return { loading: false, success: true };
+
+    case EQUIPMENT_REQUEST_DELETE_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
