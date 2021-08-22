@@ -1,9 +1,9 @@
-from django.test import SimpleTestCase
+from rest_framework.test import APITestCase
 from django.urls import reverse, resolve
 from request_control.views import *
 
 
-class TestRequestControlUrls(SimpleTestCase):
+class TestRequestControlUrls(APITestCase):
 
     def test_create_request(self):
         url = reverse("create-request")
