@@ -38,10 +38,13 @@ def registerUser(request):
     data = request.data
 
     print(data)
+    if len(data['email']) == 0 or len(data['name']) == 0 or len(data['password']) == 0:
+        return Response({'detail': 'Invalid request'}, status=status.HTTP_400_BAD_REQUEST)
+        
     try:
         user = User.objects.create(
-            name=data['name'],
             email=data['email'],
+            name=data['name'],
             password=make_password(data['password'])
         )
         profile = UserProfileModel.objects.create(
