@@ -11,11 +11,18 @@ from equipment_control.serializers import EquipmentRequestModelSerializer, Equip
 def create_equipment_request(request):
     data = request.data
 
+    if data['is_emergency'] == 'false':
+        is_emergency = False
+    elif data['is_emergency'] == 'on':
+        is_emergency = True
+    else:
+        is_emergency = data['is_emergency']
+
     req = EquipmentRequestModel.objects.create(
         user=request.user,
         title=data['title'],
         description=data['description'],
-        is_emergency=data['is_emergency'],
+        is_emergency=is_emergency,
         location=data['location'],
         needed_within=data['needed_within'],
         is_active=True,
