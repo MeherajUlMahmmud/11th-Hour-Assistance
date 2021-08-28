@@ -12,13 +12,20 @@ def createRequest(request):
     data = request.data
     print(data)
 
+    if data['is_emergency'] == 'false':
+        is_emergency = False
+    elif data['is_emergency'] == 'on':
+        is_emergency = True
+    else:
+        is_emergency = data['is_emergency']
+
     req = RequestModel.objects.create(
         user=request.user,
         patient_name=data['patient_name'],
         gender=data['gender'],
         blood_group=data['blood_group'],
         location=data['location'],
-        is_emergency=data['is_emergency'],
+        is_emergency=is_emergency,
         is_active=True,
         needed_within=data['needed_within'],
         phone=data['phone'],
