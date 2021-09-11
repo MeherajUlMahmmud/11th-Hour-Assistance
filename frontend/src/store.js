@@ -18,6 +18,7 @@ import {
 import {
   articleCreateReducer,
   articleListReducer,
+  articleDetailsReducer,
   articleDeleteReducer,
   articleUpdateReducer,
 } from "./reducers/articleReducers";
@@ -39,6 +40,7 @@ const reducer = combineReducers({
 
   articleCreate: articleCreateReducer,
   articleList: articleListReducer,
+  articleDetails: articleDetailsReducer,
   articleDelete: articleDeleteReducer,
   articleUpdate: articleUpdateReducer,
 
