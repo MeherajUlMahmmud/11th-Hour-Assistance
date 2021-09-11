@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,7 +21,7 @@ INSTALLED_APPS = [
     'user_control.apps.UserControlConfig',
     'request_control.apps.RequestControlConfig',
     'equipment_control.apps.EquipmentControlConfig',
-
+    'articles.apps.ArticlesConfig',
 
 
     'rest_framework',
@@ -43,8 +44,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
-
-from datetime import timedelta
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
