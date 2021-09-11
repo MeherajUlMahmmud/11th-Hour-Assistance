@@ -16,6 +16,8 @@ import ArticleHomeScreen from "./screens/article/ArticleHomeScreen";
 import ArticlePostScreen from "./screens/article/ArticlePostScreen";
 import ArticleDetailsScreen from "./screens/article/ArticleDetailsScreen";
 import ArticleUpdateScreen from "./screens/article/ArticleUpdateScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import ProfileUpdateScreen from "./screens/user/ProfileUpdateScreen";
 
 function App() {
   return (
@@ -47,6 +49,8 @@ function App() {
 
         <Route path="/login" component={LoginScreen} />
         <Route path="/register" component={RegisterScreen} />
+        <Route path="/profile" component={ProfileScreen} />
+        <Route path="/update-profile" component={ProfileUpdateScreen} />
       </main>
       <Footer />
     </Router>

@@ -1,4 +1,3 @@
-from rest_framework.test import APITestCase
 from .test_setup import TestSetUp
 
 
