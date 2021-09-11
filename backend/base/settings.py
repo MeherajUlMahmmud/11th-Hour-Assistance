@@ -153,6 +153,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 
-MEDIA_ROOT = 'static/images'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+    BASE_DIR / 'frontend/build/static'
+]
+
+MEDIA_ROOT = BASE_DIR / 'static/images'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
