@@ -35,7 +35,6 @@ function ArticleHomeScreen({ history, match }) {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  let keyword = history.location.search;
   useEffect(() => {
     dispatch({ type: ARTICLE_CREATE_RESET });
 
@@ -69,12 +68,13 @@ function ArticleHomeScreen({ history, match }) {
               <div className="col-lg-4"></div>
               <div className="col-lg-4"></div>
               <div className="col-lg-4">
-                <button
-                  className="btn btn-primary"
-                  onClick={createArticleHandler}
-                >
-                  <i className="fas fa-plus"></i> Write New Article
-                </button>
+                <Link to="/create-article">
+                  <button
+                    className="btn btn-primary"
+                  >
+                    <i className="fas fa-plus"></i> Write New Article
+                  </button>
+                </Link>
               </div>
             </div>
           ) : null}

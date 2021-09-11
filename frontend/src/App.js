@@ -15,6 +15,7 @@ import UpdateEquipmentRequestScreen from "./screens/equipment/UpdateEquipmentReq
 import ArticleHomeScreen from "./screens/article/ArticleHomeScreen";
 import ArticlePostScreen from "./screens/article/ArticlePostScreen";
 import ArticleDetailsScreen from "./screens/article/ArticleDetailsScreen";
+import ArticleUpdateScreen from "./screens/article/ArticleUpdateScreen";
 
 function App() {
   return (
@@ -40,8 +41,10 @@ function App() {
           component={UpdateEquipmentRequestScreen}
         />
         <Route path="/articles" component={ArticleHomeScreen} />
-        <Route path="/edit-article/:id" component={ArticlePostScreen} />
         <Route path="/article/:id" component={ArticleDetailsScreen} />
+        <Route path="/create-article" component={ArticlePostScreen} />
+        <Route path="/edit-article/:id" component={ArticleUpdateScreen} />
+
         <Route path="/login" component={LoginScreen} />
         <Route path="/register" component={RegisterScreen} />
       </main>

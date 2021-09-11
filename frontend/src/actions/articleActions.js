@@ -14,7 +14,7 @@ import {
   ARTICLE_UPDATE_FAIL,
   ARTICLE_DELETE_REQUEST,
   ARTICLE_DELETE_SUCCESS,
-  ARTICLE_DELETE_FAIL
+  ARTICLE_DELETE_FAIL,
 } from "../constants/articleConstants";
 
 export const listArticles = () => async (dispatch) => {
@@ -38,64 +38,106 @@ export const listArticles = () => async (dispatch) => {
   }
 };
 
-export const createArticle = () => async (dispatch, getState) => {
-    try {
-      dispatch({
-        type: ARTICLE_CREATE_REQUEST,
-      });
+// export const createArticle = () => async (dispatch, getState) => {
+//     try {
+//       dispatch({
+//         type: ARTICLE_CREATE_REQUEST,
+//       });
 
-      const {
-        userLogin: { userInfo },
-      } = getState();
+//       const {
+//         userLogin: { userInfo },
+//       } = getState();
 
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      };
+//       const config = {
+//         headers: {
+//           "Content-type": "application/json",
+//           Authorization: `Bearer ${userInfo.token}`,
+//         },
+//       };
 
-      const { data } = await axios.post(
-        `/api/articles/create-new-article/`,
-        {},
-        config
-      );
+//       const { data } = await axios.post(
+//         `/api/articles/create-new-article/`,
+//         {},
+//         config
+//       );
 
-      dispatch({
-        type: ARTICLE_CREATE_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: ARTICLE_CREATE_FAIL,
-        payload:
-          error.response && error.response.data.detail
-            ? error.response.data.detail
-            : error.message,
-      });
-    }
-  };
+//       dispatch({
+//         type: ARTICLE_CREATE_SUCCESS,
+//         payload: data,
+//       });
+//     } catch (error) {
+//       dispatch({
+//         type: ARTICLE_CREATE_FAIL,
+//         payload:
+//           error.response && error.response.data.detail
+//             ? error.response.data.detail
+//             : error.message,
+//       });
+//     }
+//   };
 
-  export const listArticleDetails = (id) => async (dispatch) => {
-    try {
-      dispatch({ type: ARTICLE_DETAILS_REQUEST });
+export const createArticle = (article) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ARTICLE_CREATE_REQUEST,
+    });
 
-      const { data } = await axios.get(`/api/articles/article/${id}/`);
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
-      dispatch({
-        type: ARTICLE_DETAILS_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: ARTICLE_DETAILS_FAIL,
-        payload:
-          error.response && error.response.data.detail
-            ? error.response.data.detail
-            : error.message,
-      });
-    }
-  };
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.post(
+      `/api/articles/create-new-article/`,
+      article,
+      config
+    );
+
+    dispatch({
+      type: ARTICLE_CREATE_SUCCESS,
+      payload: data,
+    });
+    dispatch({
+      type: ARTICLE_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ARTICLE_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
+          : error.message,
+    });
+  }
+};
+
+export const listArticleDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: ARTICLE_DETAILS_REQUEST });
+
+    const { data } = await axios.get(`/api/articles/article/${id}/`);
+
+    dispatch({
+      type: ARTICLE_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ARTICLE_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
+          : error.message,
+    });
+  }
+};
 
 export const updateArticle = (article) => async (dispatch, getState) => {
   try {
@@ -115,7 +157,7 @@ export const updateArticle = (article) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `/api/articles/update-article/${article.id}/`,
+      `/api/articles/update-article/${article.articleId}/`,
       article,
       config
     );
@@ -156,7 +198,10 @@ export const deleteArticle = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/articles/delete-article/${id}/`, config);
+    const { data } = await axios.delete(
+      `/api/articles/delete-article/${id}/`,
+      config
+    );
 
     dispatch({
       type: ARTICLE_DELETE_SUCCESS,
