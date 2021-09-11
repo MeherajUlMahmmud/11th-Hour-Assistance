@@ -3,13 +3,16 @@ import {
   ARTICLE_CREATE_SUCCESS,
   ARTICLE_CREATE_FAIL,
   ARTICLE_CREATE_RESET,
+  ARTICLE_LIST_REQUEST,
+  ARTICLE_LIST_SUCCESS,
+  ARTICLE_LIST_FAIL,
+  ARTICLE_DETAILS_REQUEST,
+  ARTICLE_DETAILS_SUCCESS,
+  ARTICLE_DETAILS_FAIL,
   ARTICLE_UPDATE_REQUEST,
   ARTICLE_UPDATE_SUCCESS,
   ARTICLE_UPDATE_FAIL,
   ARTICLE_UPDATE_RESET,
-  ARTICLE_LIST_REQUEST,
-  ARTICLE_LIST_SUCCESS,
-  ARTICLE_LIST_FAIL,
   ARTICLE_DELETE_REQUEST,
   ARTICLE_DELETE_SUCCESS,
   ARTICLE_DELETE_FAIL,
@@ -30,6 +33,25 @@ export const articleListReducer = (
       };
 
     case ARTICLE_LIST_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const articleDetailsReducer = (
+  state = { article: {} },
+  action
+) => {
+  switch (action.type) {
+    case ARTICLE_DETAILS_REQUEST:
+      return { loading: true, ...state };
+
+    case ARTICLE_DETAILS_SUCCESS:
+      return { loading: false, article: action.payload };
+
+    case ARTICLE_DETAILS_FAIL:
       return { loading: false, error: action.payload };
 
     default:
