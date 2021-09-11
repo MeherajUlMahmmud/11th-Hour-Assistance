@@ -12,6 +12,7 @@ import EquipmentRequestScreen from "./screens/equipment/EquipmentRequestScreen";
 import PostEquipmentRequestScreen from "./screens/equipment/PostEquipmentRequestScreen";
 import EquipmentRequestDetailsScreen from "./screens/equipment/EquipmentRequestDetailsScreen";
 import UpdateEquipmentRequestScreen from "./screens/equipment/UpdateEquipmentRequestScreen";
+import ArticlePostScreen from "./screens/article/ArticlePostScreen";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           path="/update-equipment-request/:id"
           component={UpdateEquipmentRequestScreen}
         />
+        <Route path="/edit-article/:id" component={ArticlePostScreen} />
         <Route path="/login" component={LoginScreen} />
         <Route path="/register" component={RegisterScreen} />
       </main>
