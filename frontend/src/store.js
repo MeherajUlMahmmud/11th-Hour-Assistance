@@ -17,6 +17,8 @@ import {
 } from "./reducers/equipmentReducers";
 import {
   articleCreateReducer,
+  articleListReducer,
+  articleDeleteReducer,
   articleUpdateReducer,
 } from "./reducers/articleReducers";
 
@@ -36,6 +38,8 @@ const reducer = combineReducers({
   equipmentRequestDelete: equipmentRequestDeleteReducer,
 
   articleCreate: articleCreateReducer,
+  articleList: articleListReducer,
+  articleDelete: articleDeleteReducer,
   articleUpdate: articleUpdateReducer,
 
   userLogin: userLoginReducer,
