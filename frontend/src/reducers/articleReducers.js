@@ -10,6 +10,9 @@ import {
   ARTICLE_LIST_REQUEST,
   ARTICLE_LIST_SUCCESS,
   ARTICLE_LIST_FAIL,
+  ARTICLE_DELETE_REQUEST,
+  ARTICLE_DELETE_SUCCESS,
+  ARTICLE_DELETE_FAIL,
 } from "../constants/articleConstants";
 
 export const articleListReducer = (
@@ -27,6 +30,22 @@ export const articleListReducer = (
       };
 
     case ARTICLE_LIST_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const articleDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ARTICLE_DELETE_REQUEST:
+      return { loading: true };
+
+    case ARTICLE_DELETE_SUCCESS:
+      return { loading: false, success: true };
+
+    case ARTICLE_DELETE_FAIL:
       return { loading: false, error: action.payload };
 
     default:
