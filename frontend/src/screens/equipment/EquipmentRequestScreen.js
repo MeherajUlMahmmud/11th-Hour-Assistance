@@ -28,7 +28,7 @@ function EquipmentRequestScreen() {
             <h3>Equipment Requests</h3>
           </div>
           {userInfo ? (
-            <div className="row">
+            <div className="row mb-3">
               <div className="col-lg-4"></div>
               <div className="col-lg-4"></div>
               <div className="col-lg-4">
