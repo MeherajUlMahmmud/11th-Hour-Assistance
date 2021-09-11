@@ -15,6 +15,10 @@ import {
   equipmentRequestUpdateReducer,
   equipmentRequestDeleteReducer,
 } from "./reducers/equipmentReducers";
+import {
+  articleCreateReducer,
+  articleUpdateReducer,
+} from "./reducers/articleReducers";
 
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
 
@@ -30,6 +34,9 @@ const reducer = combineReducers({
   equipmentRequestDetails: equipmentRequestDetailsReducer,
   equipmentRequestUpdate: equipmentRequestUpdateReducer,
   equipmentRequestDelete: equipmentRequestDeleteReducer,
+
+  articleCreate: articleCreateReducer,
+  articleUpdate: articleUpdateReducer,
 
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
