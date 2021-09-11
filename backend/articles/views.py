@@ -13,10 +13,8 @@ def create_article(request):
     print(data)
 
     post = ArticleModel.objects.create(
-        user=request.user,
-        title=data['title'],
-        image=data['image'],
-        content=data['content'],
+        author=request.user,
+        title="Title",
     )
     serializer = ArticleModelSerializer(post, many=False)
     return Response(serializer.data)
