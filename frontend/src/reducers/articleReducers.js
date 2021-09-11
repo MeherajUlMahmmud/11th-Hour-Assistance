@@ -7,8 +7,32 @@ import {
   ARTICLE_UPDATE_SUCCESS,
   ARTICLE_UPDATE_FAIL,
   ARTICLE_UPDATE_RESET,
+  ARTICLE_LIST_REQUEST,
+  ARTICLE_LIST_SUCCESS,
+  ARTICLE_LIST_FAIL,
 } from "../constants/articleConstants";
 
+export const articleListReducer = (
+  state = { articles: [] },
+  action
+) => {
+  switch (action.type) {
+    case ARTICLE_LIST_REQUEST:
+      return { loading: true, articles: [] };
+
+    case ARTICLE_LIST_SUCCESS:
+      return {
+        loading: false,
+        articles: action.payload,
+      };
+
+    case ARTICLE_LIST_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
 
 export const articleCreateReducer = (state = {}, action) => {
   switch (action.type) {
