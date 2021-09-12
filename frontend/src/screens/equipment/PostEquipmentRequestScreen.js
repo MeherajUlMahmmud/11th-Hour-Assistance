@@ -108,7 +108,7 @@ function PostEquipmentRequestScreen({ match, history }) {
                       className="form-control"
                       placeholder="Phone Number"
                       checked={phone}
-                      onChange={(e) => setPhone(e.target.phone)}
+                      onChange={(e) => setPhone(e.target.value)}
                       required
                     ></input>
                   </div>
