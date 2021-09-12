@@ -52,14 +52,14 @@ function Header() {
                     Equipment Service
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     className="btn-get-started scrollto"
                     to={"/ambulance-service"}
                   >
                     Ambulance Service
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </li>
             <li>
