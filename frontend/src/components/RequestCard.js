@@ -1,31 +1,23 @@
 import React from "react";
-import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function RequestCard({ req }) {
   return (
-    <Card className="p-3 my-3 rounded" bg="danger" text="light">
-      <Card.Body>
-        <Card.Text as="h2">
-          {req.blood_group} <small>Blood</small>
-        </Card.Text>
-
-        <Link to={`/req/${req._id}`}>
-          <Card.Title as="div">
-            <strong>{req.patient_name}</strong>
-          </Card.Title>
-        </Link>
-
-        <Card.Text as="h5">At: {req.location}</Card.Text>
-        <Card.Text as="p">Needed: {req.needed_within}</Card.Text>
-      </Card.Body>
-      <Card.Footer>
-        <Card.Text>Posted: {req.posted_on}</Card.Text>
-        <Link to={`/request/${req.id}`}>
-          <p>See Details</p>
-        </Link>
-      </Card.Footer>
-    </Card>
+    <div>
+      <h2 style={{ color: "red", fontWeight: "bold" }}>{req.blood_group}</h2>
+      <hr />
+      <h4>{req.patient_name}</h4>
+      <strong>Needed Within: {req.needed_within}</strong>
+      <p style={{ color: "black", fontWeight: "bold" }}>
+        Location: {req.location}
+      </p>
+      <p style={{ color: "black", fontWeight: "bold" }}>
+        Posted: {req.posted_on}
+      </p>
+      <Link to={`/request/${req.id}`}>
+        <p style={{ color: "blue", fontWeight: "bold" }}>See Details</p>
+      </Link>
+    </div>
   );
 }
 

@@ -90,18 +90,18 @@ export const requestUpdateReducer = (state = { request: {} }, action) => {
   }
 };
 
-export const requestDeleteReducer = (state = {}, action) => {
-  switch (action.type) {
-    case REQUEST_DELETE_REQUEST:
-      return { loading: true };
-
-    case REQUEST_DELETE_SUCCESS:
-      return { loading: false, success: true };
-
-    case REQUEST_DELETE_FAIL:
-      return { loading: false, error: action.payload };
-
-    default:
-      return state;
-  }
-};
+  export const requestDeleteReducer = (state = {}, action) => {
+    switch (action.type) {
+      case REQUEST_DELETE_REQUEST:
+        return { loading: true };
+  
+      case REQUEST_DELETE_SUCCESS:
+        return { loading: false, success: true };
+  
+      case REQUEST_DELETE_FAIL:
+        return { loading: false, error: action.payload };
+  
+      default:
+        return state;
+    }
+  };
